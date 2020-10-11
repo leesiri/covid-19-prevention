@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAnimate } from 'react-simple-animate';
-import MakeCovaImg from './makeCovaImg';
-import hole from './image/hole.png';
-import cova1 from './image/cova1.png';
+import BoxContainer from './boxContainer';
 
 const styles: { [index: string]: any } = {
   textAlign: 'center',
@@ -11,7 +9,9 @@ const styles: { [index: string]: any } = {
 };
 
 function App() {
+  // eslint-disable-next-line
   const [downType, setDownType] = useState(false);
+  // eslint-disable-next-line
   const { play, style, isPlaying } = useAnimate({
     start: {
       transform: 'translateY(-130px)',
@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     play(false);
-  }, [flag]);
+  }, [flag, play]);
 
   // useEffect(() => {
   //   if (downType) {
@@ -48,56 +48,43 @@ function App() {
           3번
         </button>
       </div>
-      <br />
-      <br />
-      <br />
-      <div className={'container'}>
+      <div className={'container'} style={{ margin: '100px auto 0' }}>
         <div style={styles} className="columns">
-          <div style={{ width: 150 }} className="column">
-            <div style={{ padding: 0 }}>
-              <div style={{ width: 150 }}>
-                <img src={hole} alt={'hole' + 1} />
-              </div>
-              <MakeCovaImg
-                style={
-                  flag === 1 ? style : { transition: 'all 0.3s linear 0s' }
-                }
-                index={1}
-              />
-            </div>
-          </div>
-          <br />
-          <br />
-          <br />
-          <div style={{ width: 150 }} className="column">
-            <div
-              style={{
-                position: 'relative',
-                padding: 0,
-              }}
-            >
-              <div style={{ width: 150 }}>
-                <img src={hole} alt={'hole' + 2} />
-              </div>
-              <MakeCovaImg
-                style={
-                  flag === 2 ? style : { transition: 'all 0.3s linear 0s' }
-                }
-                index={2}
-              />
-            </div>
-          </div>
+          <BoxContainer flag={flag} style={style} name={1} />
+          <BoxContainer flag={flag} style={style} name={2} />
+          <BoxContainer flag={flag} style={style} name={3} />
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div style={styles} className="columns">
+          <BoxContainer flag={flag} style={style} name={4} />
+          <BoxContainer flag={flag} style={style} name={5} />
+          <BoxContainer flag={flag} style={style} name={6} />
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div style={styles} className="columns">
+          <BoxContainer flag={flag} style={style} name={7} />
+          <BoxContainer flag={flag} style={style} name={8} />
+          <BoxContainer flag={flag} style={style} name={9} />
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div style={styles} className="columns">
+          <BoxContainer flag={flag} style={style} name={10} />
+          <BoxContainer flag={flag} style={style} name={10} />
+          <BoxContainer flag={flag} style={style} name={10} />
         </div>
       </div>
-      {/*<table className="table is-bordered is-fullwidth">*/}
-      {/*  <tbody>*/}
-      {/*    <tr>*/}
-      {/*      {[1, 2, 3].map((row) => (*/}
-      {/*        */}
-      {/*      ))}*/}
-      {/*    </tr>*/}
-      {/*  </tbody>*/}
-      {/*</table>*/}
     </div>
   );
 }
