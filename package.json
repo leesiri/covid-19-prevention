@@ -1,5 +1,5 @@
 {
-  "name": "covid-19-protection",
+  "name": "covid-19-prevention",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,7 +20,8 @@
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "build": "INLINE_RUNTIME_CHUNK=false react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -38,7 +39,8 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^3.1.0"
+    "gh-pages": "^3.1.0",
+    "webpack-cli": "^4.0.0"
   },
-  "homepage": "http://gitname.github.io/covid-19-protection"
+  "homepage": "http://gitname.github.io/covid-19-prevention"
 }

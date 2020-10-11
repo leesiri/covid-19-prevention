@@ -1,4 +1,5 @@
 import React, { useEffect, useState, memo } from 'react';
+import cova1 from './image/cova1.png';
 
 const MakeCovaImg = ({ style, index }: any) => {
   return (
@@ -10,7 +11,7 @@ const MakeCovaImg = ({ style, index }: any) => {
           marginLeft: 25,
         }}
       >
-        <img src={'cova1.png'} alt={'cova' + index} />
+        <img src={cova1} alt={'cova' + index} />
       </div>
     </div>
   );

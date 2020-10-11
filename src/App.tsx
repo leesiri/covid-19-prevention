@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useAnimate } from 'react-simple-animate';
 import MakeCovaImg from './makeCovaImg';
+import hole from './image/hole.png';
+import cova1 from './image/cova1.png';
 
 const styles: { [index: string]: any } = {
   textAlign: 'center',
@@ -54,7 +56,7 @@ function App() {
           <div style={{ width: 150 }} className="column">
             <div style={{ padding: 0 }}>
               <div style={{ width: 150 }}>
-                <img src={'hole.png'} alt={'hole' + 1} />
+                <img src={hole} alt={'hole' + 1} />
               </div>
               <MakeCovaImg
                 style={
@@ -75,7 +77,7 @@ function App() {
               }}
             >
               <div style={{ width: 150 }}>
-                <img src={'hole.png'} alt={'hole' + 2} />
+                <img src={hole} alt={'hole' + 2} />
               </div>
               <MakeCovaImg
                 style={
