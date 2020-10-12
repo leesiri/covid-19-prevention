@@ -60,12 +60,7 @@ export default function BoxContainer({
           >
             <img src={hole1} alt={'hole' + 1} />
           </div>
-          <div
-            className={'back'}
-            style={{ position: 'absolute', top: 0, left: 0, zIndex: 3 + name }}
-          >
-            <img src={hole2} alt={'hole' + 1} />
-          </div>
+
           <div
             style={{
               position: 'absolute',
@@ -76,7 +71,7 @@ export default function BoxContainer({
           >
             <MakeCovaImg
               style={
-                flag === 1
+                flag === name
                   ? style
                   : { transition: 'all 0.3s linear 0s', zIndex: 2 + name }
               }
