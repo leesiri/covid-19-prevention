@@ -1,6 +1,7 @@
 import React, { useEffect, useState, createContext } from 'react';
 
 import Container from './container';
+import Start from './start';
 
 export const AppContext = createContext({});
 
@@ -16,11 +17,20 @@ function App() {
     });
     setFlag(0);
   };
+  const setUiStatus = (e: 'init' | 'ing') => {
+    setState((prevState) => {
+      return { ...prevState, uiStatus: e };
+    });
+    setFlag(0);
+  };
+
   const initState = {
     score: 0,
     plusOne,
     flag: 0,
     setFlag,
+    uiStatus: 'init',
+    setUiStatus,
   };
   const [state, setState] = useState(initState);
   // eslint-disable-next-line
@@ -37,8 +47,15 @@ function App() {
 
   return (
     <AppContext.Provider value={state}>
-      <div className="App">
-        <Container />
+      <div
+        className="App"
+        style={
+          state.uiStatus === 'init'
+            ? { background: 'black', height: '100vh', overflow:'hidden' }
+            : {}
+        }
+      >
+        {state.uiStatus === 'init' ? <Start /> : <Container />}
       </div>
     </AppContext.Provider>
   );
