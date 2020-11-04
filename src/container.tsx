@@ -8,9 +8,16 @@ const styles: { [index: string]: any } = {
   width: '30%',
 };
 
+const randImg = () => {
+  let imgNumber = Math.floor(Math.random() * 9) + 1;
+  if([0,1].includes(imgNumber) ) return true;
+  else return false
+};
+
 export default function Container() {
   // eslint-disable-next-line
   const [testNumber, setTestNumber] = useState<number>(0);
+  const [isMask, setIsMask]= useState<boolean>(false)
   const {
     score,
     flag,
@@ -38,9 +45,12 @@ export default function Container() {
 
   const makeInter = () => {
     let nnn = rand();
+    setIsMask(randImg)
     // @ts-ignore
     setTestNumber((prev: number) => {
-      if (prev === nnn) return;
+      if (prev === nnn) {
+        nnn = rand()
+      }
       else {
         setFlag(nnn);
         return nnn;
@@ -63,9 +73,9 @@ export default function Container() {
         <div style={{ float: 'right' }}>{score}</div>
       </div>
       <div style={styles} className="columns">
-        <BoxContainer flag={flag} style={style} name={1} />
-        <BoxContainer flag={flag} style={style} name={2} />
-        <BoxContainer flag={flag} style={style} name={3} />
+        <BoxContainer flag={flag} style={style} name={1} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={2} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={3} img={isMask}/>
       </div>
       <br />
       <br />
@@ -73,9 +83,9 @@ export default function Container() {
       <br />
       <br />
       <div style={styles} className="columns">
-        <BoxContainer flag={flag} style={style} name={4} />
-        <BoxContainer flag={flag} style={style} name={5} />
-        <BoxContainer flag={flag} style={style} name={6} />
+        <BoxContainer flag={flag} style={style} name={4} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={5} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={6} img={isMask}/>
       </div>
       <br />
       <br />
@@ -83,9 +93,9 @@ export default function Container() {
       <br />
       <br />
       <div style={styles} className="columns">
-        <BoxContainer flag={flag} style={style} name={7} />
-        <BoxContainer flag={flag} style={style} name={8} />
-        <BoxContainer flag={flag} style={style} name={9} />
+        <BoxContainer flag={flag} style={style} name={7} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={8} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={9} img={isMask}/>
       </div>
       <br />
       <br />
@@ -93,9 +103,9 @@ export default function Container() {
       <br />
       <br />
       <div style={styles} className="columns">
-        <BoxContainer flag={flag} style={style} name={10} />
-        <BoxContainer flag={flag} style={style} name={10} />
-        <BoxContainer flag={flag} style={style} name={10} />
+        <BoxContainer flag={flag} style={style} name={10} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={10} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={10} img={isMask}/>
       </div>
       <br />
       <br />

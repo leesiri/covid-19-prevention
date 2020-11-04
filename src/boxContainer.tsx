@@ -6,10 +6,12 @@ export default function BoxContainer({
   flag,
   style,
   name,
+  img,
 }: {
   flag: any;
   style: any;
   name: number;
+  img: boolean;
 }) {
   if (name === 10) {
     return (
@@ -76,7 +78,8 @@ export default function BoxContainer({
               }
               index={1}
               name={name}
-              flag={flag}
+              isFlag={flag === name}
+              img={img}
             />
           </div>
         </div>

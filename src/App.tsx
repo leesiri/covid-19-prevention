@@ -23,6 +23,12 @@ function App() {
     });
     setFlag(0);
   };
+  const scoreMinusTwo = () => {
+    setState((prevState) => {
+      return { ...prevState, score: prevState.score-2 };
+    });
+    setFlag(0);
+  };
   const setUiStatus = (e: 'init' | 'ing') => {
     setState((prevState) => {
       return { ...prevState, uiStatus: e };
@@ -34,6 +40,7 @@ function App() {
     score: 0,
     plusOne,
     scoreZero,
+    scoreMinusTwo,
     flag: 0,
     setFlag,
     uiStatus: 'init',
