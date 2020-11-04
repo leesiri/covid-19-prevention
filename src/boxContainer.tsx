@@ -76,6 +76,7 @@ export default function BoxContainer({
               }
               index={1}
               name={name}
+              flag={flag}
             />
           </div>
         </div>

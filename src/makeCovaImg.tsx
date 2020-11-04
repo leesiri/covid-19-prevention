@@ -1,9 +1,19 @@
-import React, { memo, useContext } from 'react';
+import React, {memo, useContext, useEffect, useState} from 'react';
 import cova1 from './image/cova1.png';
+import cova2 from './image/cova2.png';
 import { AppContext } from './App';
 
-const MakeCovaImg = ({ style, index, name }: any) => {
+const MakeCovaImg = ({ style, index, name,flag }: any) => {
   const { plusOne }: { [index: string]: any } = useContext(AppContext);
+  const [hit, setHit] = useState<boolean>(false);
+
+  function imgClick (){
+    console.log(flag,name)
+    if(flag === name){
+      setHit(true);
+      plusOne()
+    }
+  }
 
   return (
     <div style={style}>
@@ -12,14 +22,15 @@ const MakeCovaImg = ({ style, index, name }: any) => {
           width: 100,
           zIndex: 2 + name,
           marginLeft: 25,
-
         }}
       >
         <img
-          src={cova1}
+          src={hit ? cova1 : cova2}
           alt={'cova' + index}
-          style={{ zIndex: 2 + name, cursor: 'pointer' }}
-          onClick={plusOne}
+          style={
+            hit ? { zIndex: 2 + name } : { zIndex: 2 + name, cursor: 'pointer' }
+          }
+          onClick={imgClick}
         />
       </div>
     </div>
