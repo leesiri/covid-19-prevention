@@ -8,11 +8,23 @@ const styles: { [index: string]: any } = {
   width: '30%',
 };
 
+const randImg = () => {
+  let imgNumber = Math.floor(Math.random() * 9) + 1;
+  if([0,1].includes(imgNumber) ) return true;
+  else return false
+};
+
 export default function Container() {
+  // eslint-disable-next-line
   const [testNumber, setTestNumber] = useState<number>(0);
-  const { score, flag, setFlag }: { [index: string]: any } = useContext(
-    AppContext
-  );
+  const [isMask, setIsMask]= useState<boolean>(false)
+  const {
+    score,
+    flag,
+    setFlag,
+    setUiStatus,
+  }: { [index: string]: any } = useContext(AppContext);
+
   // eslint-disable-next-line
   const { play, style, isPlaying } = useAnimate({
     start: {
@@ -32,11 +44,13 @@ export default function Container() {
   }, [flag, play]);
 
   const makeInter = () => {
-    if (score > 10) return;
     let nnn = rand();
+    setIsMask(randImg)
     // @ts-ignore
     setTestNumber((prev: number) => {
-      if (prev === nnn) return;
+      if (prev === nnn) {
+        nnn = rand()
+      }
       else {
         setFlag(nnn);
         return nnn;
@@ -46,26 +60,22 @@ export default function Container() {
 
   useEffect(() => {
     setInterval(makeInter, 1000);
+    // eslint-disable-next-line
   }, []);
 
+  function handleInit() {
+    setUiStatus('init');
+  }
+
   return (
-    <div className={'container'} style={{ margin: '100px auto 0' }}>
-      <div style={{ top: 100, right: 20, position: 'fixed' }}>
-        <div style={{ fontSize: 20 }}>{score}</div>
-        <button className={'button'} onClick={() => setFlag(1)}>
-          1번
-        </button>
-        <button className={'button'} onClick={() => setFlag(2)}>
-          2번
-        </button>
-        <button className={'button'} onClick={() => setFlag(3)}>
-          3번
-        </button>
+    <div className={'container'} style={{ padding: '10vw 20vh' }}>
+      <div style={{ fontWeight: 'bold', fontSize: 40 }}>
+        <div style={{ float: 'right' }}>{score}</div>
       </div>
       <div style={styles} className="columns">
-        <BoxContainer flag={flag} style={style} name={1} />
-        <BoxContainer flag={flag} style={style} name={2} />
-        <BoxContainer flag={flag} style={style} name={3} />
+        <BoxContainer flag={flag} style={style} name={1} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={2} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={3} img={isMask}/>
       </div>
       <br />
       <br />
@@ -73,9 +83,9 @@ export default function Container() {
       <br />
       <br />
       <div style={styles} className="columns">
-        <BoxContainer flag={flag} style={style} name={4} />
-        <BoxContainer flag={flag} style={style} name={5} />
-        <BoxContainer flag={flag} style={style} name={6} />
+        <BoxContainer flag={flag} style={style} name={4} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={5} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={6} img={isMask}/>
       </div>
       <br />
       <br />
@@ -83,9 +93,9 @@ export default function Container() {
       <br />
       <br />
       <div style={styles} className="columns">
-        <BoxContainer flag={flag} style={style} name={7} />
-        <BoxContainer flag={flag} style={style} name={8} />
-        <BoxContainer flag={flag} style={style} name={9} />
+        <BoxContainer flag={flag} style={style} name={7} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={8} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={9} img={isMask}/>
       </div>
       <br />
       <br />
@@ -93,10 +103,19 @@ export default function Container() {
       <br />
       <br />
       <div style={styles} className="columns">
-        <BoxContainer flag={flag} style={style} name={10} />
-        <BoxContainer flag={flag} style={style} name={10} />
-        <BoxContainer flag={flag} style={style} name={10} />
+        <BoxContainer flag={flag} style={style} name={10} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={10} img={isMask}/>
+        <BoxContainer flag={flag} style={style} name={10} img={isMask}/>
       </div>
+      <br />
+      <br />
+      <button
+        className={'button'}
+        style={{ zIndex: 99, width: '50vw', margin: '0 auto' }}
+        onClick={handleInit}
+      >
+        종료
+      </button>
     </div>
   );
 }
