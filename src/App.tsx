@@ -46,7 +46,8 @@ function App() {
       alert('10점 !');
       setUiStatus('init');
     }
-  }, [state.score,setUiStatus]);
+    // eslint-disable-next-line
+  }, [state.score]);
 
   return (
     <AppContext.Provider value={state}>
