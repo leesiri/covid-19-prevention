@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import BoxContainer from './boxContainer';
 import { useAnimate } from 'react-simple-animate';
 import { AppContext } from './App';
@@ -9,10 +9,12 @@ const styles: { [index: string]: any } = {
 };
 
 export default function Container() {
-  const [testNumber, setTestNumber] = useState<number>(0);
-  const { score, flag, setFlag }: { [index: string]: any } = useContext(
-    AppContext
-  );
+  const {
+    score,
+    flag,
+    setFlag,
+    setUiStatus,
+  }: { [index: string]: any } = useContext(AppContext);
   // eslint-disable-next-line
   const { play, style, isPlaying } = useAnimate({
     start: {
@@ -29,10 +31,10 @@ export default function Container() {
 
   useEffect(() => {
     play(false);
+    console.log(flag)
   }, [flag, play]);
 
   const makeInter = () => {
-    if (score > 10) return;
     let nnn = rand();
     // @ts-ignore
     setTestNumber((prev: number) => {
@@ -46,21 +48,17 @@ export default function Container() {
 
   useEffect(() => {
     setInterval(makeInter, 1000);
+    // eslint-disable-next-line
   }, []);
 
+  function handleInit() {
+    setUiStatus('init');
+  }
+
   return (
-    <div className={'container'} style={{ margin: '100px auto 0' }}>
-      <div style={{ top: 100, right: 20, position: 'fixed' }}>
-        <div style={{ fontSize: 20 }}>{score}</div>
-        <button className={'button'} onClick={() => setFlag(1)}>
-          1번
-        </button>
-        <button className={'button'} onClick={() => setFlag(2)}>
-          2번
-        </button>
-        <button className={'button'} onClick={() => setFlag(3)}>
-          3번
-        </button>
+    <div className={'container'} style={{ padding: '10vw 20vh' }}>
+      <div style={{ fontWeight: 'bold', fontSize: 40 }}>
+        <div style={{ float: 'right' }}>{score}</div>
       </div>
       <div style={styles} className="columns">
         <BoxContainer flag={flag} style={style} name={1} />
@@ -97,6 +95,15 @@ export default function Container() {
         <BoxContainer flag={flag} style={style} name={10} />
         <BoxContainer flag={flag} style={style} name={10} />
       </div>
+      <br />
+      <br />
+      <button
+        className={'button'}
+        style={{ zIndex: 99, width: '50vw', margin: '0 auto' }}
+        onClick={handleInit}
+      >
+        종료
+      </button>
     </div>
   );
 }

@@ -17,6 +17,12 @@ function App() {
     });
     setFlag(0);
   };
+  const scoreZero = () => {
+    setState((prevState) => {
+      return { ...prevState, score: 0 };
+    });
+    setFlag(0);
+  };
   const setUiStatus = (e: 'init' | 'ing') => {
     setState((prevState) => {
       return { ...prevState, uiStatus: e };
@@ -27,23 +33,20 @@ function App() {
   const initState = {
     score: 0,
     plusOne,
+    scoreZero,
     flag: 0,
     setFlag,
     uiStatus: 'init',
     setUiStatus,
   };
   const [state, setState] = useState(initState);
-  // eslint-disable-next-line
-  const [downType, setDownType] = useState(false);
 
-  // useEffect(() => {
-  //   if (downType) {
-  //     setTimeout(() => {
-  //       play(!isPlaying);
-  //       setDownType(false);
-  //     }, 1000);
-  //   }
-  // }, [downType]);
+  useEffect(() => {
+    if (state.score > 10) {
+      alert('10점 !');
+      setUiStatus('init');
+    }
+  }, [state.score,setUiStatus]);
 
   return (
     <AppContext.Provider value={state}>
@@ -51,7 +54,7 @@ function App() {
         className="App"
         style={
           state.uiStatus === 'init'
-            ? { background: 'black', height: '100vh', overflow:'hidden' }
+            ? { background: 'black', height: '100vh', overflow: 'hidden' }
             : {}
         }
       >

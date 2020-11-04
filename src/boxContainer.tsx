@@ -1,7 +1,6 @@
 import React from 'react';
 import MakeCovaImg from './makeCovaImg';
 import hole1 from './image/hole.png';
-import hole2 from './image/hole2.png';
 
 export default function BoxContainer({
   flag,
