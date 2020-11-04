@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import BoxContainer from './boxContainer';
 import { useAnimate } from 'react-simple-animate';
 import { AppContext } from './App';
@@ -9,12 +9,15 @@ const styles: { [index: string]: any } = {
 };
 
 export default function Container() {
+  // eslint-disable-next-line
+  const [testNumber, setTestNumber] = useState<number>(0);
   const {
     score,
     flag,
     setFlag,
     setUiStatus,
   }: { [index: string]: any } = useContext(AppContext);
+
   // eslint-disable-next-line
   const { play, style, isPlaying } = useAnimate({
     start: {
@@ -31,7 +34,6 @@ export default function Container() {
 
   useEffect(() => {
     play(false);
-    console.log(flag)
   }, [flag, play]);
 
   const makeInter = () => {
