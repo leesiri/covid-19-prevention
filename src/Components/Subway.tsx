@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default function Subway({ display, onClick, holeNumber }: any) {
+export default function Subway(props: any) {
   return (
-    <div className="game__hole" style={{ display: display }}>
+    <div className="game__hole" style={{ display: props.context.display }}>
       <div className="game__whack">
         <div
           className={'game__mole'}
-          onClick={onClick}
-          style={{ WebkitTransform: holeNumber }}
+          onClick={props.onClick}
+          style={{ WebkitTransform: props.context.holeNumber }}
         />
         <div className="game__mound" />
       </div>
