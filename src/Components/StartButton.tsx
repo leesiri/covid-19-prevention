@@ -1,18 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-export default function StartButton(props: any) {
-  useEffect(() => {
-    console.log(props.context.buttonDisplay, 'buttonDisplay');
-  }, [props]);
-
+export default function StartButton({
+  onClick,
+  buttonDisplay,
+  buttonMessage,
+}: {
+  onClick: any;
+  buttonDisplay: string;
+  buttonMessage: string;
+}) {
   return (
     <button
       className="game__start-button"
       type="button"
-      onClick={props.onClick}
-      style={{ display: props.context.buttonDisplay }}
+      onClick={onClick}
+      style={{ display: buttonDisplay }}
     >
-      {props.context.buttonMessage}
+      {buttonMessage}
     </button>
   );
 }

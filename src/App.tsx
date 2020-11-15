@@ -18,18 +18,18 @@ function App() {
     7: 'translate(0, 110%)',
     8: 'translate(0, 110%)',
     9: 'translate(0, 110%)',
-    shake: 'translate(0, 0)',
-    gameHasStarted: false,
-    moleHasBeenWhacked: false,
-    score: 0,
-    lastMole: [],
-    display: 'none',
-    buttonMessage: 'Start Game',
-    gameOver: 'none',
-    buttonDisplay: 'inline-block',
-    titleMargin: '15px',
-    background: '',
   });
+  const [shake, setShake] = useState('translate(0, 0)');
+  const [gameHasStarted, setGameHasStarted] = useState(false);
+  const [moleHasBeenWhacked, setMoleHasBeenWhacked] = useState(false);
+  const [score, setScore] = useState(0);
+  const [lastMole, setLastMole] = useState<number[]>([]);
+  const [display, setDisplay] = useState('none');
+  const [buttonMessage, setButtonMessage] = useState('Start Game');
+  const [gameOver, setGameOver] = useState('none');
+  const [buttonDisplay, setButtonDisplay] = useState('inline-block');
+  const [titleMargin, setTitleMargin] = useState('15px');
+  const [background, setBackground] = useState('');
 
   const gameOverRef = useRef(null);
 
@@ -48,16 +48,13 @@ function App() {
 
   function timeOut(num: number) {
     console.log('start');
-    if (state.gameHasStarted) {
+    if (gameHasStarted) {
       return;
     }
-    setState({
-      ...state,
-      buttonDisplay: 'none',
-      display: 'block',
-      gameOver: 'none',
-      titleMargin: '0px',
-    });
+    setButtonDisplay('none');
+    setDisplay('block');
+    setGameOver('none');
+    setTitleMargin('0px');
     shakeScreen();
     window.setTimeout(() => {
       startGame();
@@ -65,15 +62,11 @@ function App() {
   }
 
   function startGame() {
-    if (state.gameHasStarted) {
+    if (gameHasStarted) {
       return;
     }
-
-    setState({
-      ...state,
-      gameHasStarted: true,
-      score: 0,
-    });
+    setGameHasStarted(true);
+    setScore(0);
 
     let x = 0;
     const intervalID = setInterval(() => {
@@ -81,16 +74,13 @@ function App() {
       if (++x === 16) {
         window.clearInterval(intervalID);
         clearMoles();
-        setState({ ...state, gameHasStarted: false });
+        setGameHasStarted(false);
         window.setTimeout(() => {
-          setState({
-            ...state,
-            display: 'none',
-            gameOver: 'block',
-            buttonMessage: 'Play again',
-            buttonDisplay: 'inline-block',
-            titleMargin: '15px',
-          });
+          setDisplay('none');
+          setGameOver('block');
+          setButtonMessage('Play Again');
+          setButtonDisplay('inline-block');
+          setTitleMargin('15px');
           animate(gameOverRef);
         }, 850);
       }
@@ -100,6 +90,7 @@ function App() {
   function clearMoles() {
     for (let value in state) {
       if (!isNaN(Number(value))) {
+        //다시볼것
         setState({
           ...state,
           [value]: 'translate(0, 110%)',
@@ -110,40 +101,36 @@ function App() {
 
   function displayMoles() {
     let activeMole = Math.ceil(Math.random() * 9);
-    if (state.lastMole[0] === activeMole) {
+    if (lastMole[0] === activeMole) {
       displayMoles();
       return;
     }
     clearMoles();
-    // @ts-ignore
+    //다시볼것
     setState({
       ...state,
       [activeMole]: 'translate(0, 15%)',
-      //@ts-ignore
-      lastMole: [activeMole],
     });
+    setLastMole([activeMole]);
   }
 
   function lockOutClick() {
     window.setTimeout(() => {
-      setState({ ...state, moleHasBeenWhacked: false });
+      setMoleHasBeenWhacked(false);
     }, 350);
   }
 
   function addToScore(e: any) {
-    if (state.moleHasBeenWhacked) {
+    if (moleHasBeenWhacked) {
       return;
     }
     let target = e.target;
     target.parentNode.classList.add('game__cross');
     target.classList.add('no-background');
     lockOutClick();
-    setState({
-      ...state,
-      background: '75px',
-      moleHasBeenWhacked: true,
-      score: parseInt(String(state.score), 10) + 1,
-    });
+    setBackground('75px');
+    setMoleHasBeenWhacked(true);
+    setScore(parseInt(String(score), 10) + 1);
     window.setTimeout(function () {
       target.parentNode.classList.remove('game__cross');
       target.classList.remove('no-background');
@@ -155,12 +142,12 @@ function App() {
     let i = 0;
     let shake = () => {
       if (i === 15) {
-        setState({ ...state, shake: 'translate(0, 0)' });
+        setShake('translate(0, 0)');
         return;
       }
       window.setTimeout(() => {
         posOrNeg = posOrNeg === '-' ? '+' : '-';
-        setState({ ...state, shake: `translate(${posOrNeg}${i}px, 0)` });
+        setShake(`translate(${posOrNeg}${i}px, 0)`);
         shake();
       }, 80);
       i++;
@@ -181,13 +168,13 @@ function App() {
   return (
     <div className="App">
       <div className="main-container">
-        <div className="game" style={{ WebkitTransform: state['shake'] }}>
-          <h1 className="game__title" style={{ margin: state.titleMargin }}>
-            WHACK-A-MOLE
+        <div className="game" style={{ WebkitTransform: shake }}>
+          <h1 className="game__title" style={{ margin: titleMargin }}>
+            Covid-19-Prevention
           </h1>
           <GameOver context={state} />
           <div ref={gameOverRef} className="game__button-container">
-            <StartButton context={state} onClick={timeOut} />
+            <StartButton buttonDisplay={buttonDisplay} buttonMessage={buttonMessage} onClick={timeOut} />
           </div>
           {createMoleHoles()}
           <Score context={state} />
