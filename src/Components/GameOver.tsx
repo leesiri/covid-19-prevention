@@ -1,11 +1,11 @@
 import React from 'react';
 
-export default function GameOver(props: any) {
+export default function GameOver({gameOver,score}: {gameOver:string,score:number}) {
 
   return (
-    <div className="game__game-over" style={{ display: props.context.gameOver }}>
+    <div className="game__game-over" style={{ display: gameOver }}>
       <h1 className="game__game-over-header" >GAME OVER!</h1>
-      <p className="game__you-scored">You scored { props.context.score }/15</p>
+      <p className="game__you-scored">You scored { score }/15</p>
     </div>
   )
 }

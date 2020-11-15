@@ -57,7 +57,7 @@ html {
 }
 
 .game__mound {
-  background: url(image/subway.png);
+  background: url(image/mole-hole.svg);
   background-position: right 5px bottom 0px;
   background-size: 95%;
   background-repeat: no-repeat;
@@ -70,7 +70,7 @@ html {
 }
 
 .game__mole {
-  background-image: url(image/none-man-left.png);
+  background-image: url(image/mole.png);
   background-size: 50px;
   background-repeat: no-repeat;
   background-position: top;
@@ -86,7 +86,7 @@ html {
 }
 
 .game__cross {
-  background-image: url(image/mask-man-left.png);
+  background-image: url(image/smash.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 60px;

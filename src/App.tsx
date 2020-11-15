@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 // @ts-ignore
 import anime from 'animejs';
@@ -6,6 +6,8 @@ import Subway from './Components/Subway';
 import GameOver from './Components/GameOver';
 import StartButton from './Components/StartButton';
 import Score from './Components/Score';
+
+let lastMole: null | number = null;
 
 function App() {
   const [state, setState] = useState({
@@ -19,17 +21,15 @@ function App() {
     8: 'translate(0, 110%)',
     9: 'translate(0, 110%)',
   });
-  const [shake, setShake] = useState('translate(0, 0)');
   const [gameHasStarted, setGameHasStarted] = useState(false);
   const [moleHasBeenWhacked, setMoleHasBeenWhacked] = useState(false);
   const [score, setScore] = useState(0);
-  const [lastMole, setLastMole] = useState<number[]>([]);
+
   const [display, setDisplay] = useState('none');
   const [buttonMessage, setButtonMessage] = useState('Start Game');
   const [gameOver, setGameOver] = useState('none');
   const [buttonDisplay, setButtonDisplay] = useState('inline-block');
   const [titleMargin, setTitleMargin] = useState('15px');
-  const [background, setBackground] = useState('');
 
   const gameOverRef = useRef(null);
 
@@ -47,7 +47,6 @@ function App() {
   }
 
   function timeOut(num: number) {
-    console.log('start');
     if (gameHasStarted) {
       return;
     }
@@ -55,7 +54,6 @@ function App() {
     setDisplay('block');
     setGameOver('none');
     setTitleMargin('0px');
-    shakeScreen();
     window.setTimeout(() => {
       startGame();
     }, num);
@@ -101,7 +99,7 @@ function App() {
 
   function displayMoles() {
     let activeMole = Math.ceil(Math.random() * 9);
-    if (lastMole[0] === activeMole) {
+    if (lastMole === activeMole) {
       displayMoles();
       return;
     }
@@ -111,7 +109,7 @@ function App() {
       ...state,
       [activeMole]: 'translate(0, 15%)',
     });
-    setLastMole([activeMole]);
+    lastMole = activeMole;
   }
 
   function lockOutClick() {
@@ -128,7 +126,6 @@ function App() {
     target.parentNode.classList.add('game__cross');
     target.classList.add('no-background');
     lockOutClick();
-    setBackground('75px');
     setMoleHasBeenWhacked(true);
     setScore(parseInt(String(score), 10) + 1);
     window.setTimeout(function () {
@@ -137,29 +134,12 @@ function App() {
     }, 500);
   }
 
-  function shakeScreen() {
-    let posOrNeg = '+';
-    let i = 0;
-    let shake = () => {
-      if (i === 15) {
-        setShake('translate(0, 0)');
-        return;
-      }
-      window.setTimeout(() => {
-        posOrNeg = posOrNeg === '-' ? '+' : '-';
-        setShake(`translate(${posOrNeg}${i}px, 0)`);
-        shake();
-      }, 80);
-      i++;
-    };
-    shake();
-  }
-
   function createMoleHoles() {
     let holes = [];
     for (let i = 1; i <= 9; i++) {
       holes.push(
-        <Subway key={i} context={state} onClick={addToScore} holeNumber={i} />
+        // @ts-ignore
+        <Subway onClick={addToScore} holeNumber={state[i]} display={display} />
       );
     }
     return <div className="board">{holes}</div>;
@@ -168,16 +148,20 @@ function App() {
   return (
     <div className="App">
       <div className="main-container">
-        <div className="game" style={{ WebkitTransform: shake }}>
+        <div className="game">
           <h1 className="game__title" style={{ margin: titleMargin }}>
             Covid-19-Prevention
           </h1>
-          <GameOver context={state} />
+          <GameOver score={score} gameOver={gameOver} />
           <div ref={gameOverRef} className="game__button-container">
-            <StartButton buttonDisplay={buttonDisplay} buttonMessage={buttonMessage} onClick={timeOut} />
+            <StartButton
+              buttonDisplay={buttonDisplay}
+              buttonMessage={buttonMessage}
+              onClick={timeOut}
+            />
           </div>
           {createMoleHoles()}
-          <Score context={state} />
+          <Score score={score} display={display} />
         </div>
       </div>
     </div>
