@@ -1,7 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-// @ts-ignore
-import anime from 'animejs';
 import Subway from './Components/Subway';
 import GameOver from './Components/GameOver';
 import StartButton from './Components/StartButton';
@@ -30,21 +28,6 @@ function App() {
   const [gameOver, setGameOver] = useState('none');
   const [buttonDisplay, setButtonDisplay] = useState('inline-block');
   const [titleMargin, setTitleMargin] = useState('15px');
-
-  const gameOverRef = useRef(null);
-
-  function animate(el: any) {
-    anime({
-      targets: el,
-      direction: 'alternate',
-      loop: true,
-      easing: 'easeInQuad',
-      duration: 1600,
-      scale: function (el: any, i: any, l: any) {
-        return l - i + 0.08;
-      },
-    });
-  }
 
   function timeOut(num: number) {
     if (gameHasStarted) {
@@ -79,7 +62,6 @@ function App() {
           setButtonMessage('Play Again');
           setButtonDisplay('inline-block');
           setTitleMargin('15px');
-          animate(gameOverRef);
         }, 850);
       }
     }, 700);
@@ -88,7 +70,6 @@ function App() {
   function clearMoles() {
     for (let value in state) {
       if (!isNaN(Number(value))) {
-        //다시볼것
         setState({
           ...state,
           [value]: 'translate(0, 110%)',
@@ -104,7 +85,6 @@ function App() {
       return;
     }
     clearMoles();
-    //다시볼것
     setState({
       ...state,
       [activeMole]: 'translate(0, 15%)',
@@ -123,13 +103,13 @@ function App() {
       return;
     }
     let target = e.target;
-    target.parentNode.classList.add('game__cross');
+    target.parentNode.classList.add('game__cross1');
     target.classList.add('no-background');
     lockOutClick();
     setMoleHasBeenWhacked(true);
     setScore(parseInt(String(score), 10) + 1);
     window.setTimeout(function () {
-      target.parentNode.classList.remove('game__cross');
+      target.parentNode.classList.remove('game__cross1');
       target.classList.remove('no-background');
     }, 500);
   }
@@ -138,8 +118,14 @@ function App() {
     let holes = [];
     for (let i = 1; i <= 9; i++) {
       holes.push(
-        // @ts-ignore
-        <Subway onClick={addToScore} holeNumber={state[i]} display={display} />
+        <Subway
+          onClick={addToScore}
+          // @ts-ignore
+          holeNumber={state[i]}
+          display={display}
+          maskFlag={1}
+          key={i}
+        />
       );
     }
     return <div className="board">{holes}</div>;
@@ -148,20 +134,22 @@ function App() {
   return (
     <div className="App">
       <div className="main-container">
-        <div className="game">
-          <h1 className="game__title" style={{ margin: titleMargin }}>
-            Covid-19-Prevention
-          </h1>
-          <GameOver score={score} gameOver={gameOver} />
-          <div ref={gameOverRef} className="game__button-container">
-            <StartButton
-              buttonDisplay={buttonDisplay}
-              buttonMessage={buttonMessage}
-              onClick={timeOut}
-            />
+        <div className={'flash-game'}>
+          <div className="game">
+            <h1 className="game__title" style={{ margin: titleMargin }}>
+              Covid-19-Prevention
+            </h1>
+            <GameOver score={score} gameOver={gameOver} />
+            <div className="game__button-container">
+              <StartButton
+                buttonDisplay={buttonDisplay}
+                buttonMessage={buttonMessage}
+                onClick={timeOut}
+              />
+            </div>
+            {createMoleHoles()}
+            <Score score={score} display={display} />
           </div>
-          {createMoleHoles()}
-          <Score score={score} display={display} />
         </div>
       </div>
     </div>
@@ -169,3 +157,7 @@ function App() {
 }
 
 export default App;
+
+// 9개의 구멍을 만든다 (컴포넌트)
+// 시작 버튼 누르면 0.7초마다 랜덤숫자(1~9)를 생성해 해당 컴포넌트를 올리고 다른 컴포넌트를 내린다.
+// 15번이 반복되면 end
