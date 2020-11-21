@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.js": "/covid-19-prevention/static/js/main.7823b0ba.chunk.js",
-    "main.js.map": "/covid-19-prevention/static/js/main.7823b0ba.chunk.js.map",
+    "main.css": "/covid-19-prevention/static/css/main.b55854a0.chunk.css",
+    "main.js": "/covid-19-prevention/static/js/main.9b2253ee.chunk.js",
+    "main.js.map": "/covid-19-prevention/static/js/main.9b2253ee.chunk.js.map",
     "runtime-main.js": "/covid-19-prevention/static/js/runtime-main.d4773361.js",
     "runtime-main.js.map": "/covid-19-prevention/static/js/runtime-main.d4773361.js.map",
-    "static/js/2.f2d0ebea.chunk.js": "/covid-19-prevention/static/js/2.f2d0ebea.chunk.js",
-    "static/js/2.f2d0ebea.chunk.js.map": "/covid-19-prevention/static/js/2.f2d0ebea.chunk.js.map",
+    "static/js/2.fcfd711f.chunk.js": "/covid-19-prevention/static/js/2.fcfd711f.chunk.js",
+    "static/js/2.fcfd711f.chunk.js.map": "/covid-19-prevention/static/js/2.fcfd711f.chunk.js.map",
     "index.html": "/covid-19-prevention/index.html",
-    "precache-manifest.27c1ab6f612f2d784d595402de9e9d25.js": "/covid-19-prevention/precache-manifest.27c1ab6f612f2d784d595402de9e9d25.js",
+    "precache-manifest.bb9278dfd3f0e229fce4e8f39589e3ef.js": "/covid-19-prevention/precache-manifest.bb9278dfd3f0e229fce4e8f39589e3ef.js",
     "service-worker.js": "/covid-19-prevention/service-worker.js",
-    "static/js/2.f2d0ebea.chunk.js.LICENSE.txt": "/covid-19-prevention/static/js/2.f2d0ebea.chunk.js.LICENSE.txt",
-    "static/media/cova1.png": "/covid-19-prevention/static/media/cova1.b0163bf1.png",
-    "static/media/cova2.png": "/covid-19-prevention/static/media/cova2.c4e95e9d.png",
-    "static/media/cova3.png": "/covid-19-prevention/static/media/cova3.4c8642c4.png",
-    "static/media/hole.png": "/covid-19-prevention/static/media/hole.dd96d0ec.png"
+    "static/css/main.b55854a0.chunk.css.map": "/covid-19-prevention/static/css/main.b55854a0.chunk.css.map",
+    "static/js/2.fcfd711f.chunk.js.LICENSE.txt": "/covid-19-prevention/static/js/2.fcfd711f.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/covid-19-prevention/static/media/wavy-border.5f6056ee.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.d4773361.js",
-    "static/js/2.f2d0ebea.chunk.js",
-    "static/js/main.7823b0ba.chunk.js"
+    "static/js/2.fcfd711f.chunk.js",
+    "static/css/main.b55854a0.chunk.css",
+    "static/js/main.9b2253ee.chunk.js"
   ]
 }
