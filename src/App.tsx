@@ -78,7 +78,7 @@ function App() {
           clearMole();
         }, 850);
       }
-    }, 700);
+    }, 800);
   }
 
   async function displayMoles() {
