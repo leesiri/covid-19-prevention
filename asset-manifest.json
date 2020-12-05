@@ -1,23 +1,35 @@
 {
   "files": {
-    "main.css": "/covid-19-prevention/static/css/main.b55854a0.chunk.css",
-    "main.js": "/covid-19-prevention/static/js/main.9b2253ee.chunk.js",
-    "main.js.map": "/covid-19-prevention/static/js/main.9b2253ee.chunk.js.map",
+    "main.css": "/covid-19-prevention/static/css/main.56c17bb4.chunk.css",
+    "main.js": "/covid-19-prevention/static/js/main.5f571dc0.chunk.js",
+    "main.js.map": "/covid-19-prevention/static/js/main.5f571dc0.chunk.js.map",
     "runtime-main.js": "/covid-19-prevention/static/js/runtime-main.d4773361.js",
     "runtime-main.js.map": "/covid-19-prevention/static/js/runtime-main.d4773361.js.map",
-    "static/js/2.fcfd711f.chunk.js": "/covid-19-prevention/static/js/2.fcfd711f.chunk.js",
-    "static/js/2.fcfd711f.chunk.js.map": "/covid-19-prevention/static/js/2.fcfd711f.chunk.js.map",
+    "static/js/2.96b3d628.chunk.js": "/covid-19-prevention/static/js/2.96b3d628.chunk.js",
+    "static/js/2.96b3d628.chunk.js.map": "/covid-19-prevention/static/js/2.96b3d628.chunk.js.map",
     "index.html": "/covid-19-prevention/index.html",
-    "precache-manifest.bb9278dfd3f0e229fce4e8f39589e3ef.js": "/covid-19-prevention/precache-manifest.bb9278dfd3f0e229fce4e8f39589e3ef.js",
+    "precache-manifest.9a1673a9feb7599e7e93e5e388100dba.js": "/covid-19-prevention/precache-manifest.9a1673a9feb7599e7e93e5e388100dba.js",
     "service-worker.js": "/covid-19-prevention/service-worker.js",
-    "static/css/main.b55854a0.chunk.css.map": "/covid-19-prevention/static/css/main.b55854a0.chunk.css.map",
-    "static/js/2.fcfd711f.chunk.js.LICENSE.txt": "/covid-19-prevention/static/js/2.fcfd711f.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/covid-19-prevention/static/media/wavy-border.5f6056ee.svg"
+    "static/css/main.56c17bb4.chunk.css.map": "/covid-19-prevention/static/css/main.56c17bb4.chunk.css.map",
+    "static/js/2.96b3d628.chunk.js.LICENSE.txt": "/covid-19-prevention/static/js/2.96b3d628.chunk.js.LICENSE.txt",
+    "static/media/angry-boy-left.png": "/covid-19-prevention/static/media/angry-boy-left.fe1a62a3.png",
+    "static/media/angry-girl-left.png": "/covid-19-prevention/static/media/angry-girl-left.8aaf4451.png",
+    "static/media/angry-man-left.png": "/covid-19-prevention/static/media/angry-man-left.03f17372.png",
+    "static/media/angry-woman-left.png": "/covid-19-prevention/static/media/angry-woman-left.06561fd9.png",
+    "static/media/mask-boy-left.png": "/covid-19-prevention/static/media/mask-boy-left.24dd7986.png",
+    "static/media/mask-girl-left.png": "/covid-19-prevention/static/media/mask-girl-left.06f25f66.png",
+    "static/media/mask-man-left.png": "/covid-19-prevention/static/media/mask-man-left.6c3cd43d.png",
+    "static/media/mask-woman-left.png": "/covid-19-prevention/static/media/mask-woman-left.f2f9284f.png",
+    "static/media/App.css": "/covid-19-prevention/static/media/subway.dbbafa97.png",
+    "static/media/none-boy-left.png": "/covid-19-prevention/static/media/none-boy-left.7063b411.png",
+    "static/media/none-girl-left.png": "/covid-19-prevention/static/media/none-girl-left.efe9b7c6.png",
+    "static/media/none-man-left.png": "/covid-19-prevention/static/media/none-man-left.add533f5.png",
+    "static/media/none-woman-left.png": "/covid-19-prevention/static/media/none-woman-left.5bb341bb.png"
   },
   "entrypoints": [
     "static/js/runtime-main.d4773361.js",
-    "static/js/2.fcfd711f.chunk.js",
-    "static/css/main.b55854a0.chunk.css",
-    "static/js/main.9b2253ee.chunk.js"
+    "static/js/2.96b3d628.chunk.js",
+    "static/css/main.56c17bb4.chunk.css",
+    "static/js/main.5f571dc0.chunk.js"
   ]
 }
