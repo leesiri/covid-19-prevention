@@ -37,13 +37,11 @@ function Subway({
   display,
   score,
   setScore,
-  lastMole,
 }: {
   holeNumber: Array<number | null>;
   display: string;
   score: number;
   setScore: (e: number) => void;
-  lastMole: string | null;
 }) {
   const [isClick, setIsClick] = useState(false);
   const customStyle = {
@@ -66,7 +64,6 @@ function Subway({
           <img
             alt={'clicked'}
             src={after[Number(holeNumber[1])]}
-            // className={'game__mole' + holeNumber[1]}
             style={customStyle}
             draggable={false}
           />
@@ -92,4 +89,4 @@ function Subway({
   );
 }
 
-export default memo(Subway);
+export default Subway;

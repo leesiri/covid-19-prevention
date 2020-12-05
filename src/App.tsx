@@ -46,7 +46,18 @@ function App() {
     }, num);
   }
 
+  function clearMole() {
+    for (let value in state) {
+      setState({
+        ...state,
+        [value]: ['translate(0, 110%)', ''],
+      });
+    }
+  }
+
   function startGame() {
+    lastMole = null;
+    lastRand = null;
     if (gameHasStarted) {
       return;
     }
@@ -65,6 +76,7 @@ function App() {
           setButtonMessage('Play Again');
           setButtonDisplay('inline-block');
           setTitleMargin('15px');
+          clearMole();
         }, 850);
       }
     }, 700);
@@ -103,28 +115,11 @@ function App() {
     }, 350);
   }
 
-  const addToScore = (i: any) => (e: any) => {
-    if (moleHasBeenWhacked) {
-      return;
-    }
-    let target = e.target;
-    target.parentNode.classList.add('game__cross');
-    target.classList.add('no-background');
-    lockOutClick();
-    setMoleHasBeenWhacked(true);
-    setScore(parseInt(String(score), 10) + 1);
-    window.setTimeout(function () {
-      target.parentNode.classList.remove('game__cross');
-      target.classList.remove('no-background');
-    }, 500);
-  };
-
   function createMoleHoles() {
     let holes = [];
     for (let i = 1; i <= 9; i++) {
       holes.push(
         <Subway
-          onClick={addToScore(state[i][1])}
           // @ts-ignore
           holeNumber={state[i]}
           display={display}
