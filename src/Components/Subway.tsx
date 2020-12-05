@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 const after = [
   require('../image/mole-hole.svg'),
   require('../image/mask-boy-left.png'),

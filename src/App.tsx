@@ -24,7 +24,6 @@ function App() {
     '9': ['translate(0, 110%)', ''],
   });
   const [gameHasStarted, setGameHasStarted] = useState(false);
-  const [moleHasBeenWhacked, setMoleHasBeenWhacked] = useState(false);
   const [score, setScore] = useState(0);
 
   const [display, setDisplay] = useState('none');
@@ -107,12 +106,6 @@ function App() {
     }
     lastMole = activeMole;
     lastRand = randNum;
-  }
-
-  function lockOutClick() {
-    window.setTimeout(() => {
-      setMoleHasBeenWhacked(false);
-    }, 350);
   }
 
   function createMoleHoles() {
