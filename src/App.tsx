@@ -5,19 +5,23 @@ import GameOver from './Components/GameOver';
 import StartButton from './Components/StartButton';
 import Score from './Components/Score';
 
-let lastMole: null | number = null;
+let lastMole: null | string = null;
+let lastRand: null | number = null;
+interface stateInter {
+  [index: string]: Array<string | number>;
+}
 
 function App() {
-  const [state, setState] = useState({
-    1: 'translate(0, 110%)',
-    2: 'translate(0, 110%)',
-    3: 'translate(0, 110%)',
-    4: 'translate(0, 110%)',
-    5: 'translate(0, 110%)',
-    6: 'translate(0, 110%)',
-    7: 'translate(0, 110%)',
-    8: 'translate(0, 110%)',
-    9: 'translate(0, 110%)',
+  const [state, setState] = useState<stateInter>({
+    '1': ['translate(0, 110%)', ''],
+    '2': ['translate(0, 110%)', ''],
+    '3': ['translate(0, 110%)', ''],
+    '4': ['translate(0, 110%)', ''],
+    '5': ['translate(0, 110%)', ''],
+    '6': ['translate(0, 110%)', ''],
+    '7': ['translate(0, 110%)', ''],
+    '8': ['translate(0, 110%)', ''],
+    '9': ['translate(0, 110%)', ''],
   });
   const [gameHasStarted, setGameHasStarted] = useState(false);
   const [moleHasBeenWhacked, setMoleHasBeenWhacked] = useState(false);
@@ -50,11 +54,10 @@ function App() {
     setScore(0);
 
     let x = 0;
-    const intervalID = setInterval(() => {
+    const intervalID = setInterval(async () => {
       displayMoles();
       if (++x === 16) {
         window.clearInterval(intervalID);
-        clearMoles();
         setGameHasStarted(false);
         window.setTimeout(() => {
           setDisplay('none');
@@ -67,29 +70,31 @@ function App() {
     }, 700);
   }
 
-  function clearMoles() {
-    for (let value in state) {
-      if (!isNaN(Number(value))) {
-        setState({
-          ...state,
-          [value]: 'translate(0, 110%)',
-        });
-      }
-    }
-  }
+  async function displayMoles() {
+    let activeMole = String(Math.ceil(Math.random() * 9));
+    let randNum =
+      Math.ceil(Math.random() * 5) === 5
+        ? Math.ceil(Math.random() * 4) + 4
+        : Math.ceil(Math.random() * 4);
 
-  function displayMoles() {
-    let activeMole = Math.ceil(Math.random() * 9);
     if (lastMole === activeMole) {
       displayMoles();
       return;
     }
-    clearMoles();
-    setState({
-      ...state,
-      [activeMole]: 'translate(0, 15%)',
-    });
+    if (lastMole && lastRand) {
+      setState({
+        ...state,
+        [lastMole]: ['translate(0, 110%)', lastRand],
+        [activeMole]: ['translate(0, 15%)', randNum],
+      });
+    } else {
+      setState({
+        ...state,
+        [activeMole]: ['translate(0, 15%)', randNum],
+      });
+    }
     lastMole = activeMole;
+    lastRand = randNum;
   }
 
   function lockOutClick() {
@@ -98,33 +103,35 @@ function App() {
     }, 350);
   }
 
-  function addToScore(e: any) {
+  const addToScore = (i: any) => (e: any) => {
     if (moleHasBeenWhacked) {
       return;
     }
     let target = e.target;
-    target.parentNode.classList.add('game__cross1');
+    target.parentNode.classList.add('game__cross');
     target.classList.add('no-background');
     lockOutClick();
     setMoleHasBeenWhacked(true);
     setScore(parseInt(String(score), 10) + 1);
     window.setTimeout(function () {
-      target.parentNode.classList.remove('game__cross1');
+      target.parentNode.classList.remove('game__cross');
       target.classList.remove('no-background');
     }, 500);
-  }
+  };
 
   function createMoleHoles() {
     let holes = [];
     for (let i = 1; i <= 9; i++) {
       holes.push(
         <Subway
-          onClick={addToScore}
+          onClick={addToScore(state[i][1])}
           // @ts-ignore
           holeNumber={state[i]}
           display={display}
-          maskFlag={1}
+          lastMole={lastMole}
           key={i}
+          score={score}
+          setScore={setScore}
         />
       );
     }
@@ -157,7 +164,3 @@ function App() {
 }
 
 export default App;
-
-// 9개의 구멍을 만든다 (컴포넌트)
-// 시작 버튼 누르면 0.7초마다 랜덤숫자(1~9)를 생성해 해당 컴포넌트를 올리고 다른 컴포넌트를 내린다.
-// 15번이 반복되면 end

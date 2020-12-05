@@ -18,7 +18,7 @@ html {
 .flash-game {
   width: 600px;
   height: 600px;
-  background-color: #2d4b96;
+  background-color: steelblue;
   text-align: center;
   display: -webkit-flex;
   -webkit-align-items: center;
@@ -82,7 +82,7 @@ html {
 }
 
 .game__mole {
-  background-image: url(image/mask-man-left.png);
+  /*background-image: url(image/mask-man-left.png);*/
   background-repeat: no-repeat;
   background-position: top;
   height: 100%;
@@ -100,7 +100,7 @@ html {
 }
 
 .game__mole1 {
-  background-image: url(image/mask-man-left.png);
+  background-image: url(image/mask-boy-right.png);
   background-repeat: no-repeat;
   background-position: top;
   height: 100%;
@@ -108,6 +108,7 @@ html {
   transition: all 0.4s;
   cursor: pointer;
 }
+
 .game__cross1 {
   background-image: url(image/angry-man-left.png);
   background-repeat: no-repeat;
@@ -127,8 +128,50 @@ html {
   transition: all 0.4s;
   cursor: pointer;
 }
+
 .game__cross2 {
   background-image: url(image/mask-man-left.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60px;
+  width: 100%;
+  height: 100%;
+}
+
+.game__mole3 {
+  background-image: url(image/none-woman-right.png);
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: top;
+  height: 100%;
+  transform: translate(0, 50%);
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+.game__cross3 {
+  background-image: url(image/mask-woman-right.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60px;
+  width: 100%;
+  height: 100%;
+}
+
+.game__mole4 {
+  background-image: url(image/none-boy-right.png);
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: top;
+  height: 100%;
+  transform: translate(0, 50%);
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+
+.game__cross4 {
+  background-image: url(image/mask-boy-right.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 60px;
@@ -173,7 +216,6 @@ html {
 }
 
 .game__game-over {
-  background-image: url(image/wavy-border.svg);
   background-repeat: no-repeat;
   background-position: center;
   width: 280px;
@@ -194,10 +236,19 @@ html {
     height: 100vh;
   }
 
+  .game__mole {
+    background-size: 100px;
+  }
   .game__mole1 {
     background-size: 100px;
   }
   .game__mole2 {
+    background-size: 100px;
+  }
+  .game__mole3 {
+    background-size: 100px;
+  }
+  .game__mole4 {
     background-size: 100px;
   }
 }
@@ -212,6 +263,9 @@ html {
     margin: 70px 0 -10px 0;
   }
 
+  .game__cross {
+    background-size: 100px;
+  }
   .game__cross1 {
     background-size: 100px;
   }
@@ -223,10 +277,19 @@ html {
     width: 400px;
   }
 
+  .game__mole {
+    background-size: 100px;
+  }
   .game__mole1 {
     background-size: 100px;
   }
   .game__mole2 {
+    background-size: 100px;
+  }
+  .game__mole3 {
+    background-size: 100px;
+  }
+  .game__mole4 {
     background-size: 100px;
   }
 

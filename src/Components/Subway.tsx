@@ -1,34 +1,95 @@
-import React from 'react';
-import noneBoyLeft from '../image/none-boy-left.png';
+import React, { memo, useEffect, useState } from 'react';
+const after = [
+  require('../image/mole-hole.svg'),
+  require('../image/mask-boy-left.png'),
+  require('../image/mask-girl-left.png'),
+  require('../image/mask-man-left.png'),
+  require('../image/mask-woman-left.png'),
+  require('../image/angry-boy-left.png'),
+  require('../image/angry-girl-left.png'),
+  require('../image/angry-man-left.png'),
+  require('../image/angry-woman-left.png'),
+];
 
-let randNum: number = 0;
-function setRandNum() {
-  randNum = Math.ceil(Math.random() * 2);
-}
+const before = [
+  require('../image/mole-hole.svg'),
+  require('../image/none-boy-left.png'),
+  require('../image/none-girl-left.png'),
+  require('../image/none-man-left.png'),
+  require('../image/none-woman-left.png'),
+  require('../image/mask-boy-left.png'),
+  require('../image/mask-girl-left.png'),
+  require('../image/mask-man-left.png'),
+  require('../image/mask-woman-left.png'),
+];
 
-export default function Subway({
+const moleStyle = {
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'top',
+  height: '100%',
+  transform: 'translate(0, 50%)',
+  transition: 'all 0.4s',
+  cursor: 'pointer',
+};
+
+function Subway({
   holeNumber,
   display,
-  onClick,
-  maskFlag,
+  score,
+  setScore,
+  lastMole,
 }: {
-  holeNumber: string;
+  holeNumber: Array<number | null>;
   display: string;
-  onClick: any;
-  maskFlag: number;
+  score: number;
+  setScore: (e: number) => void;
+  lastMole: string | null;
 }) {
-  setRandNum();
+  const [isClick, setIsClick] = useState(false);
+  const customStyle = {
+    ...moleStyle,
+    background: 'none',
+    WebkitTransform: String(holeNumber[0]) || '',
+    cursor: isClick ? 'initial' : 'pointer',
+  };
+
+  useEffect(() => {
+    if (isClick) {
+      setTimeout(() => setIsClick(false), 500);
+    }
+  }, [isClick]);
 
   return (
-    <div className="game__hole" style={{ display: display }}>
+    <div className="game__hole" style={{ display: display }} draggable={false}>
       <div className="game__whack">
-        <div
-          className={'game__mole' + 1}
-          onClick={onClick}
-          style={{ WebkitTransform: holeNumber }}
-        />
-        <div className="game__mound" />
+        {isClick ? (
+          <img
+            alt={'clicked'}
+            src={after[Number(holeNumber[1])]}
+            // className={'game__mole' + holeNumber[1]}
+            style={customStyle}
+            draggable={false}
+          />
+        ) : (
+          <img
+            alt={'none-click'}
+            src={before[Number(holeNumber[1])]}
+            onClick={() => {
+              setIsClick(true);
+              if (4 >= Number(holeNumber[1]) && Number(holeNumber[1]) >= 1) {
+                setScore(parseInt(String(score), 10) + 1);
+              } else if (Number(holeNumber[1]) >= 5) {
+                setScore(parseInt(String(score), 10) - 2);
+              }
+            }}
+            style={customStyle}
+            draggable={false}
+          />
+        )}
+        <div className="game__mound" draggable={false} />
       </div>
     </div>
   );
 }
+
+export default memo(Subway);
