@@ -6,7 +6,9 @@ html {
 
 .main-container {
   letter-spacing: 0.2rem;
-  color: white;
+  color: yellow;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-weight: bold;
   display: -webkit-flex;
   -webkit-align-items: center;
   flex-direction: row;
@@ -16,9 +18,12 @@ html {
 }
 
 .flash-game {
+  /*opacity: 0.7;*/
+  background-image: url(image/subway.png);
+  background-size: 600px 600px;
   width: 600px;
   height: 600px;
-  background-color: #2d4b96;
+  background-color: steelblue;
   text-align: center;
   display: -webkit-flex;
   -webkit-align-items: center;
@@ -47,7 +52,7 @@ html {
 .game__score {
   margin-top: 1.3rem;
   width: 100%;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
 }
 
 .board {
@@ -82,7 +87,7 @@ html {
 }
 
 .game__mole {
-  background-image: url(image/mask-man-left.png);
+  /*background-image: url(image/mask-man-left.png);*/
   background-repeat: no-repeat;
   background-position: top;
   height: 100%;
@@ -92,43 +97,6 @@ html {
 }
 .game__cross {
   background-image: url(image/smash.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 60px;
-  width: 100%;
-  height: 100%;
-}
-
-.game__mole1 {
-  background-image: url(image/mask-man-left.png);
-  background-repeat: no-repeat;
-  background-position: top;
-  height: 100%;
-  transform: translate(0, 50%);
-  transition: all 0.4s;
-  cursor: pointer;
-}
-.game__cross1 {
-  background-image: url(image/angry-man-left.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 60px;
-  width: 100%;
-  height: 100%;
-}
-
-.game__mole2 {
-  background-image: url(image/none-man-left.png);
-  background-size: 50px;
-  background-repeat: no-repeat;
-  background-position: top;
-  height: 100%;
-  transform: translate(0, 50%);
-  transition: all 0.4s;
-  cursor: pointer;
-}
-.game__cross2 {
-  background-image: url(image/mask-man-left.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 60px;
@@ -148,7 +116,9 @@ html {
 .game__start-button {
   font-size: 1rem;
   padding: 0.6rem 0.6rem 0.7rem 0.6rem;
-  color: white;
+  color: yellow;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-weight: bold;
   border: 2px solid bisque;
   background: none;
   border-radius: 5px;
@@ -173,7 +143,6 @@ html {
 }
 
 .game__game-over {
-  background-image: url(image/wavy-border.svg);
   background-repeat: no-repeat;
   background-position: center;
   width: 280px;
@@ -194,10 +163,7 @@ html {
     height: 100vh;
   }
 
-  .game__mole1 {
-    background-size: 100px;
-  }
-  .game__mole2 {
+  .game__mole {
     background-size: 100px;
   }
 }
@@ -212,10 +178,7 @@ html {
     margin: 70px 0 -10px 0;
   }
 
-  .game__cross1 {
-    background-size: 100px;
-  }
-  .game__cross2 {
+  .game__cross {
     background-size: 100px;
   }
 
@@ -223,10 +186,7 @@ html {
     width: 400px;
   }
 
-  .game__mole1 {
-    background-size: 100px;
-  }
-  .game__mole2 {
+  .game__mole {
     background-size: 100px;
   }
 
