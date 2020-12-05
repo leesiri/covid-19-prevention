@@ -10,11 +10,11 @@
     "@types/node": "^12.12.58",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
+    "animejs": "^3.2.1",
     "bulma": "^0.9.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "react-simple-animate": "^3.3.10",
     "typescript": "^3.7.5"
   },
   "scripts": {
