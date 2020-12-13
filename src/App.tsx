@@ -66,7 +66,7 @@ function App() {
     let x = 0;
     const intervalID = setInterval(async () => {
       displayMoles();
-      if (++x === 16) {
+      if (++x === 31) {
         window.clearInterval(intervalID);
         setGameHasStarted(false);
         window.setTimeout(() => {
@@ -78,7 +78,7 @@ function App() {
           clearMole();
         }, 850);
       }
-    }, 800);
+    }, 1200);
   }
 
   async function displayMoles() {
